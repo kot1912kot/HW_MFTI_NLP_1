@@ -26,10 +26,7 @@ def index():
 @app.route('/get_response', methods=['POST'])
 def get_response():
     user_input = request.form.get('user_input', '')
-
-    # Функция для нахождения наиболее подходящего ответа (уже определена ранее)
     response = find_most_suitable_response(user_input)
-
     return jsonify(response)
 
 
