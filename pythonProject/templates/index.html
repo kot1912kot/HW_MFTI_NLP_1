@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат-бот Викинги</title>
+</head>
+<body>
+    <h1>Чат-бот Викинги</h1>
+    <form id="chat-form" method="post">
+        <input type="text" id="user_input" name="user_input" autocomplete="off" placeholder="Введите ваш вопрос...">
+        <button type="submit">Отправить</button>
+    </form>
+    <div id="response"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#chat-form').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '/get_response',
+                    type: 'post',
+                    data: $('#chat-form').serialize(),
+                    success: function(response) {
+                        $('#response').html('Ответ: ' + response);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
